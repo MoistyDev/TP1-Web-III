@@ -27,8 +27,8 @@
 }
 
 .word-grid{
-    height: 40rem;
-    width: 40rem;
+    height: 23rem;
+    width: 18rem;
     margin: 2rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
