@@ -15,8 +15,16 @@ function initOnScreenKBD() {
     }
 }
 
-function writeLetter(letter) {
+function initGrid() {
+    const GRIDCASES = document.querySelectorAll("[data-grid-case]");
+}
 
+function writeLetter(letter) {
+    const GRIDCASES = document.querySelectorAll("[data-grid-case]");
+
+    for (const gridCase of GRIDCASES) {
+        gridCase.innerText = letter;
+    }
 }
 
 function resetCase() {
@@ -29,15 +37,14 @@ function confirmAnswer() {
 
 function readUserInputs() {
     let letter;
-    document.addEventListener("keypress", function(e) {
+    document.addEventListener("keydown", function(e) {
         if(window.event) {                  
-            letter = e.keyCode;
-        } else if(e.which){                
-            letter = e.which;
+            letter = e.key;
+            writeLetter(letter.toUpperCase());
         }
-
         return letter;
     });
 }
 
 initOnScreenKBD();
+readUserInputs();
