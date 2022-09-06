@@ -30,7 +30,7 @@ function confirmAnswer() {
 function readUserInputs() {
     let letter;
     document.addEventListener("keypress", function(e) {
-        if(window.event) { // IE                  
+        if(window.event) {                  
             letter = e.keyCode;
         } else if(e.which){                
             letter = e.which;
