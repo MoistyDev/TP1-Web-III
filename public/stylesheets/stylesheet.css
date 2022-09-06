@@ -58,6 +58,8 @@
 
 .on-screen-kbd .col-2 {
     margin-top: 0.1rem;
+    display: flex;
+    justify-content: center;
 }
 
 .on-screen-kbd .col:hover, .col-2:hover {
