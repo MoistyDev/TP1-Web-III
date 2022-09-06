@@ -27,4 +27,17 @@ function confirmAnswer() {
 
 }
 
+function readUserInputs() {
+    let letter;
+    document.addEventListener("keypress", function(e) {
+        if(window.event) { // IE                  
+            letter = e.keyCode;
+        } else if(e.which){                
+            letter = e.which;
+        }
+
+        return letter;
+    });
+}
+
 initOnScreenKBD();
