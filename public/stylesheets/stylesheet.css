@@ -33,18 +33,20 @@
 .word-grid {
     height: 23rem;
     width: 18rem;
-    margin: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-row: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 0.2rem;
+    
 }
 
 .word-grid .grid-item {
     border: 1px solid var(--grey-outline);
     text-align: center;
     max-width: 150px;
-
+    padding-top: 28%;
 }
 
 .on-screen-kbd .col, .col-2 {
@@ -54,6 +56,7 @@
     border-radius: 5px;
     background-color: var(--grey-outline);
     opacity: 0.6;
+    user-select: none;
 }
 
 .on-screen-kbd .col-2 {
