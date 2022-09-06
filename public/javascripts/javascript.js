@@ -1,3 +1,9 @@
+let currentCase = 1;
+
+function isLetter(str) {
+    return str.length === 1 && str.match(/[a-z]/i);
+  }
+
 function initOnScreenKBD() {
     const KEYS = document.querySelectorAll("[data-kbd-key]");
     for (const key of KEYS) {
@@ -15,20 +21,25 @@ function initOnScreenKBD() {
     }
 }
 
-function initGrid() {
-    const GRIDCASES = document.querySelectorAll("[data-grid-case]");
-}
-
 function writeLetter(letter) {
-    const GRIDCASES = document.querySelectorAll("[data-grid-case]");
-
-    for (const gridCase of GRIDCASES) {
+    const gridCase = document.querySelector('[data-grid-case="' + currentCase + '"]');
+    if (currentCase < 1) {
+        currentCase = 1;
+    }
+    if (isLetter(letter)) {
         gridCase.innerText = letter;
+        ++currentCase;
     }
 }
 
 function resetCase() {
-
+    --currentCase;
+    if (currentCase < 1) {
+        currentCase = 1;
+    }
+    const gridCase = document.querySelector('[data-grid-case="' + currentCase + '"]');
+    gridCase.innerHTML = "&nbsp";
+    
 }
 
 function confirmAnswer() {
@@ -40,9 +51,17 @@ function readUserInputs() {
     document.addEventListener("keydown", function(e) {
         if(window.event) {                  
             letter = e.key;
-            writeLetter(letter.toUpperCase());
+            if (isLetter(letter)) {
+                writeLetter(letter.toUpperCase());
+                return letter;
+            }
+            if (letter == "Backspace") {
+                resetCase();
+            }
+            if (letter == "Enter") {
+                confirmAnswer();
+            }
         }
-        return letter;
     });
 }
 
