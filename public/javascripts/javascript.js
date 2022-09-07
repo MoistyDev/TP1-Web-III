@@ -1,5 +1,22 @@
+import { getFile } from "./wordlist.js";
+ 
+
+const WORDS = await getFile();
+let selectedWord = chooseRandomWord();
 let currentCase = 1;
 let isEndOfRow = false
+
+function chooseRandomWord() {
+    const randomNumber = Math.floor(Math.random() * WORDS.length);
+    return toString(WORDS[randomNumber]);
+}
+
+function cheatModeVerification() {
+    const cheatCode = "robert";
+    if (prompt("Enter cheat code ") == "robert") {
+        alert("Here is the selected word : " + selectedWord);
+    }
+}
 
 function updateCurrentRow() {
     for (let i = 5; i <= 30; i += 5) {
@@ -24,7 +41,7 @@ function initOnScreenKBD() {
             });
         }
         if (key.textContent == "ENTER") {
-            key.addEventListener("click", confirmAnswer);
+            key.addEventListener("click", verifyAnswer);
         }
         if (key.textContent == "DELETE") {
             key.addEventListener("click", resetCase);
@@ -54,7 +71,7 @@ function resetCase() {
     updateCurrentRow();
 }
 
-function confirmAnswer() {
+function verifyAnswer() {
 
 }
 
@@ -71,7 +88,7 @@ function readUserInputs() {
                 resetCase();
             }
             if (letter == "Enter") {
-                confirmAnswer();
+                verifyAnswer();
             }
         }
     });
@@ -79,3 +96,4 @@ function readUserInputs() {
 
 initOnScreenKBD();
 readUserInputs();
+console.log(WORDS);
