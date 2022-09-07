@@ -1,8 +1,19 @@
 let currentCase = 1;
+let isEndOfRow = false
+
+function updateCurrentRow() {
+    for (let i = 5; i <= 30; i += 5) {
+        if (currentCase == i + 1) {
+            isEndOfRow = true;
+            return;
+        }
+        isEndOfRow = false;
+    }
+}
 
 function isLetter(str) {
     return str.length === 1 && str.match(/[a-z]/i);
-  }
+}
 
 function initOnScreenKBD() {
     const KEYS = document.querySelectorAll("[data-kbd-key]");
@@ -26,9 +37,10 @@ function writeLetter(letter) {
     if (currentCase < 1) {
         currentCase = 1;
     }
-    if (isLetter(letter)) {
+    if (isLetter(letter) && !isEndOfRow) {
         gridCase.innerText = letter;
         ++currentCase;
+        updateCurrentRow();
     }
 }
 
@@ -39,7 +51,7 @@ function resetCase() {
     }
     const gridCase = document.querySelector('[data-grid-case="' + currentCase + '"]');
     gridCase.innerHTML = "&nbsp";
-    
+    updateCurrentRow();
 }
 
 function confirmAnswer() {
