@@ -1,3 +1,7 @@
-const fs = require("fs");
-const text = fs.readFileSync("./words.txt", "utf-8");
-export const WORDS = text.split("\n");
+export async function getFile() {
+    return fetch('https://raw.githubusercontent.com/tabatkins/wordle-list/main/words').then(response => response.text().then(text => text.split(/\r|\n/)));
+}
+
+
+
+
