@@ -72,7 +72,29 @@ function resetCase() {
 }
 
 function verifyAnswer() {
-
+    if (isEndOfRow) {
+        for (let i = 5; i <= 30; i += 5) {
+            console.log(i);
+            console.log(currentCase + "Current");
+            if (i - 1 == currentCase) {
+                console.log("test test");
+                for (let j = 0; j <= 5; j++) {
+                    const gridCase = document.querySelector('[data-grid-case="' + (i - j) + '"]');
+                    gridCase.setAttribute('data-case-to-check');
+                }
+                const letters = document.querySelectorAll('[data-case-to-check]');
+                const word = concat(letters);
+                if (word == selectedWord) {
+                    alert("GOOD !");
+                    return true;
+                }
+                if (word != selectedWord) {
+                    alert("Wrong !");
+                    return false;
+                }
+            }
+        }
+    }
 }
 
 function readUserInputs() {
@@ -88,6 +110,7 @@ function readUserInputs() {
                 resetCase();
             }
             if (letter == "Enter") {
+                console.log();
                 verifyAnswer();
             }
         }
