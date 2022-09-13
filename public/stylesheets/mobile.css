@@ -1,0 +1,10 @@
+@media screen and (max-width: 500px){
+    .navbar .misc { 
+        margin-left: 3rem;
+    }
+
+    .navbar .misc img{
+        height: auto;
+        width: 2rem;
+    }
+}

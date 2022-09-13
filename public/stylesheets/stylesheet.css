@@ -28,6 +28,8 @@
 .content {
     display: flex;
     justify-content: center;
+    align-content: center;
+    margin: 10rem;
 }
 
 .word-grid {
@@ -48,7 +50,12 @@
     border: 1px solid var(--grey-outline);
     text-align: center;
     max-width: 150px;
+    min-width: 55px;
     padding-top: 28%;
+}
+
+.on-screen-kbd {
+    min-width: 394px;
 }
 
 .on-screen-kbd .col, .col-2 {

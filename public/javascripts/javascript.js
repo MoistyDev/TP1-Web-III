@@ -4,21 +4,22 @@ import { getFile } from "./wordlist.js";
 const WORDS = await getFile();
 let selectedWord = chooseRandomWord();
 let currentCase = 1;
+let currentRow = 1;
 let isEndOfRow = false
 
 function chooseRandomWord() {
     const randomNumber = Math.floor(Math.random() * WORDS.length);
-    return toString(WORDS[randomNumber]);
+    return (WORDS[randomNumber].toUpperCase());
 }
 
 function cheatModeVerification() {
     const cheatCode = "robert";
     if (prompt("Enter cheat code ") == "robert") {
-        alert("Here is the selected word : " + selectedWord);
+        alert("Here is the selected word : " + (selectedWord));
     }
 }
 
-function updateCurrentRow() {
+function updateEndOfRow() {
     for (let i = 5; i <= 30; i += 5) {
         if (currentCase == i + 1) {
             isEndOfRow = true;
@@ -57,7 +58,7 @@ function writeLetter(letter) {
     if (isLetter(letter) && !isEndOfRow) {
         gridCase.innerText = letter;
         ++currentCase;
-        updateCurrentRow();
+        updateEndOfRow();
     }
 }
 
@@ -68,7 +69,7 @@ function resetCase() {
     }
     const gridCase = document.querySelector('[data-grid-case="' + currentCase + '"]');
     gridCase.innerHTML = "&nbsp";
-    updateCurrentRow();
+    updateEndOfRow();
 }
 
 function verifyAnswer() {
@@ -97,6 +98,33 @@ function verifyAnswer() {
     }
 }
 
+function verifyLetter(gridCase, gridRow) {
+    let rowOfLetters = document.querySelectorAll('[data-grid-row ="' + gridRow + '"]');
+    const word = selectedWord.split('');
+    for (const letter of rowOfLetters) {
+        if ((letter.getAttribute('[data-grid-case]')) == gridCase) {
+            let selectedLetter = document.querySelector('[data-grid-case="' + gridCase + '"]');
+            for (let i = 0; i <= 5; i++) {
+                if (word[i] == valueOf(selectedLetter) && i == gridCase) {
+                    setAsDiscovered(gridCase);
+                } else if (word.includes(valueOf(selectedLetter))) {
+                    setAsInTheWord();
+                } else {
+                    
+                }
+            }
+        }
+    }
+}
+
+function setAsDiscovered(gridcase) {
+    let letter = document.querySelector('[data-grid-case="' + gridCase + '"]');
+}
+
+function setAsInTheWord() {
+
+}
+
 function readUserInputs() {
     let letter;
     document.addEventListener("keydown", function(e) {
@@ -118,5 +146,6 @@ function readUserInputs() {
 }
 
 initOnScreenKBD();
+cheatModeVerification();
 readUserInputs();
 console.log(WORDS);
