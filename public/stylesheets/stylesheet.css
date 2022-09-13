@@ -1,11 +1,13 @@
 :root {
     --grey-outline: #d3d6da;
+    --matches-bc: #538d4e;
+    --in-the-word-bc: #f7da21;
+    --not-in-the-word-bc: #818384;
 }
 
 .container-fluid {
     padding: 0px;
     padding-top: 0.3rem;
-    
 }
 
 .navbar {
@@ -29,7 +31,12 @@
     display: flex;
     justify-content: center;
     align-content: center;
-    margin: 10rem;
+}
+
+.refresh-icon {
+    display: flex;
+    justify-content: center;
+    user-select: none;
 }
 
 .word-grid {
@@ -52,6 +59,7 @@
     max-width: 150px;
     min-width: 55px;
     padding-top: 28%;
+    border-radius: 3px;
 }
 
 .on-screen-kbd {
@@ -63,7 +71,6 @@
     height: 3rem;
     width: 4rem;
     border-radius: 5px;
-    background-color: var(--grey-outline);
     opacity: 0.6;
     user-select: none;
 }
@@ -76,4 +83,26 @@
 
 .on-screen-kbd .col:hover, .col-2:hover {
     opacity: 1;
+}
+
+[data-kbd-key] {
+    background-color: var(--grey-outline);
+}
+
+.matches {
+    background-color: var(--matches-bc);
+    color: white;
+    transition: background-color 500ms linear;
+}
+
+.isInTheWord {
+    background-color: var(--in-the-word-bc);
+    color: white;
+    transition: background-color 500ms linear;
+}
+
+.notInTheWord {
+    background-color: var(--not-in-the-word-bc);
+    color: white;
+    transition: background-color 500ms linear;
 }
